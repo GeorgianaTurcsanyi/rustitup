@@ -59,12 +59,12 @@ fn validate_input(input: String) -> Result<Vec<String>, InputError> {
     Ok(parts)
 }
 
-fn check_guess(guess: &Vec<String>, secret: &Vec<&'static str>) -> (i32, i32) {
+fn check_guess(guess: &[String], secret: &[&str]) -> (i32, i32) {
     let mut is_match: i32 = 0;
     let mut is_match_position: i32 = 0;
-    for i in 0..guess.len() {
-        for j in 0..secret.len()  {
-            if guess[i].to_uppercase() == secret[j].to_string() {
+    for (i, g) in guess.iter().enumerate() {
+        for (j, s) in secret.iter().enumerate() {
+            if g.to_uppercase() == *s {
                 if i == j {
                     is_match_position += 1;
                 } else {
